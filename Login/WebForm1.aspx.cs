@@ -43,11 +43,15 @@ namespace Login
                 salt = salt +":" + pass.Split(':')[1];
                 string hash = pass.Substring(pass.LastIndexOf(@":"));
 
-                string connection = "Data Source=C:\\Users\\Jesper\\Documents\\Visual Studio 2012\\Projects\\Login\\Login\\DB\\Database1.sdf";
+                SqlConnection conn = new SqlConnection("user id=nwdpfhrzhroqyway;" +
+                                       "password=yLjU8sKKsFLsfvRhEnTLz6rZBjYSaxr33TdVzmAnqErPNvY67AgThwFBussXB2J4;server=22c02e8e-356f-4809-a022-a10801468d0b.sqlserver.sequelizer.com;" +
+                                       "Trusted_Connection=yes;" +
+                                       "database=db22c02e8e356f4809a022a10801468d0b; " +
+                                       "connection timeout=30"); 
+                
 
-                SqlCeConnection conn = new SqlCeConnection(connection);
-                SqlCeCommand insert = null;
-                SqlCeTransaction sqlTransaction = null;
+                SqlCommand insert = null;
+                SqlTransaction sqlTransaction = null;
 
 
 
@@ -116,13 +120,17 @@ namespace Login
                 string username = TextBoxUsernemaLogin.Text;
                 string password = TextBoxPasswordLogin.Text;
 
+
+
+                SqlConnection conn = new SqlConnection("user id=nwdpfhrzhroqyway;" +
+                                       "password=yLjU8sKKsFLsfvRhEnTLz6rZBjYSaxr33TdVzmAnqErPNvY67AgThwFBussXB2J4;server=22c02e8e-356f-4809-a022-a10801468d0b.sqlserver.sequelizer.com;" +
+                                       "Trusted_Connection=yes;" +
+                                       "database=db22c02e8e356f4809a022a10801468d0b; " +
+                                       "connection timeout=30");
+
+
                 
-
-                string connection = "Data Source=C:\\Users\\Jesper\\Documents\\Visual Studio 2012\\Projects\\Login\\Login\\DB\\Database1.sdf";
-
-
-                SqlCeConnection conn = new SqlCeConnection(connection);
-                SqlCeCommand select = null;
+                SqlCommand select = null;
 
 
 
@@ -145,7 +153,7 @@ namespace Login
                     select.Parameters["@Name"].Value = username;
 
 
-                    SqlCeDataReader reader = select.ExecuteReader();
+                    SqlDataReader reader = select.ExecuteReader();
                     string name = "";
                     string hash = "";
                     string salt = "";
@@ -200,11 +208,15 @@ namespace Login
 
             bool checkUName = false;
 
-            string connection = "Data Source=C:\\Users\\Jesper\\Documents\\Visual Studio 2012\\Projects\\Login\\Login\\DB\\Database1.sdf";
+            SqlConnection conn = new SqlConnection("user id=nwdpfhrzhroqyway;" +
+                                       "password=yLjU8sKKsFLsfvRhEnTLz6rZBjYSaxr33TdVzmAnqErPNvY67AgThwFBussXB2J4;server=22c02e8e-356f-4809-a022-a10801468d0b.sqlserver.sequelizer.com;" +
+                                       "Trusted_Connection=yes;" +
+                                       "database=db22c02e8e356f4809a022a10801468d0b; " +
+                                       "connection timeout=30");
 
 
-            SqlCeConnection conn = new SqlCeConnection(connection);
-            SqlCeCommand select = null;
+            
+            SqlCommand select = null;
 
             string sqlInsert = @"SELECT Name FROM login WHERE name = @name";
 
@@ -219,7 +231,7 @@ namespace Login
                 select.Parameters["@Name"].Value = username;
 
 
-                SqlCeDataReader reader = select.ExecuteReader();
+                SqlDataReader reader = select.ExecuteReader();
                 string name = "";
 
 
